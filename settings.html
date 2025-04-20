@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/settings.css">
+</head>
+<body>
+    <header>
+        <h1>Settings</h1>
+        <nav>
+            <button onclick="window.location.href='dashboard.html'">Dashboard</button>
+        </nav>
+    </header>
+    <main>
+        <section id="task-csv-upload">
+            <h2>Upload Tasks to Project from CSV</h2>
+            <label for="selectProject">Select Project:</label>
+            <select id="selectProject">
+                <option value="">-- Select a Project --</option>
+            </select>
+            <p>Select a CSV file to import tasks for the selected project. The CSV should have columns: name, description (optional), priority (TRUE/FALSE), assignedTo (comma-separated), difficulty (number), completed (TRUE/FALSE).</p>
+            <input type="file" id="taskCsvFile" accept=".csv">
+            <button onclick="uploadTasksCSV()">Upload Tasks</button>
+            <div id="task-csv-upload-status"></div>
+        </section>
+
+        <section id="backup-restore">
+            <h2>Backup & Restore Data</h2>
+            <div>
+                <h3>Download Backup</h3>
+                <button onclick="downloadBackup()">Download Backup</button>
+            </div>
+            <div>
+                <h3>Restore from Backup</h3>
+                <p>Select a backup file (.json) to restore your data.</p>
+                <input type="file" id="backupFile" accept=".json">
+                <button onclick="uploadBackup()">Upload Backup</button>
+                <div id="backup-upload-status"></div>
+            </div>
+            <div>
+                <h3>Reset Data</h3>
+                <p>Warning: This will delete all your projects and tasks!</p>
+                <button onclick="resetData()">Reset All Data</button>
+            </div>
+        </section>
+    </main>
+    <script src="js/settings.js"></script>
+    <script>
+        // Populate the project dropdown when the page loads
+        document.addEventListener('DOMContentLoaded', populateProjectDropdown);
+
+        function populateProjectDropdown() {
+            const projectSelect = document.getElementById('selectProject');
+            const projects = localStorage.getItem('projects');
+            if (projects) {
+                const projectsArray = JSON.parse(projects);
+                projectsArray.forEach(project => {
+                    const option = document.createElement('option');
+                    option.value = project.id;
+                    option.textContent = project.name;
+                    projectSelect.appendChild(option);
+                });
+            }
+        }
+    </script>
+    <script src="js/utils.js"></script>
+</body>
+</html>

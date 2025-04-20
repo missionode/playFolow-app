@@ -1,0 +1,463 @@
+.container {
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin-bottom: 20px;
+    align-content: stretch;
+}
+
+.project-info {
+    width: 100%;
+}
+
+.project-info h1 {
+    font-size: 2em;
+    margin: 0;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.progress-info {
+    text-align: right;
+    width: 100%;
+}
+
+#progressBarContainer {
+    background-color: var(--border-light);
+    border-radius: 5px;
+    height: 20px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+#progressBar {
+    background-color: var(--accent-color);
+    height: 100%;
+    width: 0%; /* Will be updated dynamically */
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+#progressBarContainer {
+    position: relative;
+}
+
+#progressPercentage {
+    font-size: 20px;
+    color: #555;
+    position: absolute;
+    right: 20px;
+    top: 0px;
+}
+
+.task-input-area {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-light);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.task-input-area h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.task-input-area .form-group {
+    margin-bottom: 15px;
+}
+
+.task-input-area label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.task-input-area input[type="text"],
+.task-input-area textarea,
+.task-input-area input[type="number"],
+.task-input-area select {
+    width: calc(100% - 12px);
+    padding: 8px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.task-input-area textarea {
+    min-height: 80px;
+}
+
+.task-input-area input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.task-input-area button[type="submit"] {
+    /* Inherits basic button styles from global.css */
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    margin-top: 15px;
+}
+
+.task-list-container h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+#taskList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.task-card {
+    /* Inherits basic card styles from global.css */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-card h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+}
+
+.task-card .priority-high {
+    border-left: 5px solid red; /* Example styling for high priority */
+    padding-left: 10px;
+}
+
+.task-card .assigned-to {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+.task-card .difficulty {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+.task-card .actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-card .actions button {
+    /* Inherits basic button styles from global.css */
+    font-size: 0.8em;
+    padding: 5px 8px;
+}
+
+.task-card .social {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.task-card .social button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-secondary);
+}
+
+.task-card .social button:hover {
+    color: var(--accent-color);
+}
+
+.task-card .social .like-icon::before {
+    content: '❤️'; /* Heart icon */
+}
+
+.task-card .social .applause-icon::before {
+    content: '👏'; /* Clapping hands icon */
+}
+
+#taskList {
+    display: flex; /* Change to flex layout */
+    flex-direction: column; /* Arrange items vertically */
+    gap: 10px; /* Adjust gap between tasks */
+}
+
+.task-card {
+    /* Inherits basic card styles from global.css */
+    padding: 15px;
+    display: flex; /* Keep flex for internal arrangement */
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 1px solid var(--border-light); /* Add a separator between tasks */
+}
+
+.task-card:last-child {
+    border-bottom: none; /* Remove border from the last task */
+}
+
+.task-card h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+    display: flex; /* Align checkbox and title */
+    align-items: center;
+    gap: 10px;
+}
+
+.priority-high {
+    border-left: 5px solid red; /* Example styling for high priority */
+    padding-left: 10px;
+}
+
+.delete-button {
+    background-color: #f44336; /* Red color */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px; /* Add some spacing */
+}
+
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+
+.like-button,
+.applause-button {
+    display: inline-flex; /* Align icon and count */
+    align-items: center; /* Vertically align */
+    gap: 5px; /* Space between icon and count */
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.like-button:hover,
+.applause-button:hover {
+    background-color: #eee;
+}
+
+.like-icon,
+.applause-icon {
+    /* You might not need specific styling for these classes now, */
+    /* as the icon is directly in the button */
+}
+
+.like-button span,
+.applause-button span {
+    font-weight: bold;
+    color: #333;
+}
+
+/* css/project-feed.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, readable font */
+    margin: 20px;
+    background-color: #f4f4f4; /* Light background for contrast */
+    line-height: 1.6; /* Improved readability */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    width: 100%;
+}
+
+header h1 {
+    margin: 0;
+    color: #333;
+}
+
+header nav button {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    font-size: 1em;
+    margin-left: 10px;
+}
+
+header nav button:hover {
+    background-color: #eee;
+}
+
+#progress-container {
+    background-color: #e9ecef;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#progressBar {
+    background-color: #007bff;
+    height: 10px;
+    border-radius: 5px;
+    width: 0%; /* Updated by JS */
+}
+
+#progressPercentage {
+    font-size: 0.9em;
+    color: #555;
+}
+
+#completionMessageContainer {
+    text-align: center;
+    font-size: 1.2em;
+    color: green;
+    margin-bottom: 15px;
+    display: none; /* Initially hidden */
+}
+
+#taskList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.task-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Elevated effect */
+    padding: 15px;
+    margin-bottom: 15px; /* Fallback for non-grid */
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.task-card.priority-high {
+    border-left: 5px solid #ffc107; /* Example: Yellow for high priority */
+    padding-left: 10px;
+}
+
+.task-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.task-card h3 input[type="checkbox"] {
+    margin: 0;
+}
+
+.task-card h3 .priority-icon {
+    color: #ff6b6b; /* Example: Red for the fire emoji */
+    font-size: 1.2em;
+}
+
+.task-card p {
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.task-card .assigned-to {
+    font-style: italic;
+    color: #777;
+    font-size: 0.9em;
+}
+
+.task-card .difficulty {
+    font-weight: bold;
+    color: #007bff;
+    font-size: 0.9em;
+}
+
+.task-card .actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.task-card .actions button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.task-card .actions button:hover {
+    background-color: #eee;
+}
+
+.task-card .actions .delete-button {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.task-card .actions .delete-button:hover {
+    background-color: #c82333;
+}
+
+.task-card .social {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.task-card .social button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+    font-size: 0.85em;
+}
+
+.task-card .social button:hover {
+    background-color: #eee;
+}
+
+.task-card .social button span {
+    font-weight: bold;
+    color: #007bff;
+}

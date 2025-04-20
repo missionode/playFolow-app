@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Feed - PlayFlow</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/project-feed.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="js/project-feed.js" defer></script>
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="project-info">
+                <h1 id="projectName"></h1>
+                <div class="progress-info">
+                    <div id="progressBarContainer">
+                        <div id="progressBar"></div>
+                        <span id="progressPercentage">0%</span>
+                    </div>
+                    <p id="daysLeft"></p>
+                </div>
+            </div>
+        </header>
+
+        <div class="task-input-area">
+            <h2>Add New Task</h2>
+            <form id="addTaskForm">
+                <div class="form-group">
+                    <label for="taskName">Task Name:</label>
+                    <input type="text" id="taskName" name="taskName" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription">Description:</label>
+                    <textarea id="taskDescription" name="taskDescription"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="taskPriority">Priority:</label>
+                    <input type="checkbox" id="taskPriority" name="taskPriority"> High
+                </div>
+                <div class="form-group">
+                    <label for="taskAssignedTo">Assigned To:</label>
+                    <select id="taskAssignedTo" name="taskAssignedTo" multiple>
+                        <option value="">-- Select Team Members --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="taskDifficulty">Difficulty (1-10):</label>
+                    <input type="number" id="taskDifficulty" name="taskDifficulty" min="1" max="10" value="5" required>
+                </div>
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
+
+        <div class="task-list-container">
+            <h2>Tasks</h2>
+            <div id="taskList">
+                </div>
+        </div>
+    </div>
+    <script src="js/utils.js"></script>
+</body>
+</html>

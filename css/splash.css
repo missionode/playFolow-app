@@ -1,0 +1,22 @@
+.splash-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Make the container take up the full viewport height */
+    background-color: var(--background-lightest); /* Using a global variable */
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    color: var(--text-primary); /* Using a global variable */
+}
+
+.logo p {
+    font-size: 1.2em;
+    color: var(--text-secondary); /* Using a global variable */
+}

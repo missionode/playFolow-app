@@ -1,0 +1,7 @@
+projectId,name,description,priority,assignedTo,difficulty,completed
+project-zenith-id,Write the first chapter,Details about the first chapter.,true,thor,3,false
+project-zenith-id,Design the cover,Visual design for the book.,true,jake,5,false
+project-nova-id,Plan the marketing campaign,Outline the strategy.,true,thor,4,false
+project-nova-id,Create social media posts,Engaging content for launch.,false,kate,2,false
+project-orion-id,Research potential markets,Identify target audiences.,true,jake,4,true
+project-orion-id,Develop core features,Implement the main functionality.,true,thor,7,false

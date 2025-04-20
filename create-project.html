@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Project - PlayFlow</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/create-project.css">
+    <script src="js/create-project.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Create New Project</h1>
+        </header>
+        <form id="createProjectForm">
+            <div class="form-group">
+                <label for="projectName">Project Name:</label>
+                <input type="text" id="projectName" name="projectName" required>
+            </div>
+            <div class="form-group">
+                <label for="timelineValue">Timeline:</label>
+                <input type="number" id="timelineValue" name="timelineValue" min="1" value="1" required>
+                <select id="timelineUnit" name="timelineUnit">
+                    <option value="days">Days</option>
+                    <option value="weeks">Weeks</option>
+                    <option value="months">Months</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="projectTeam">Team:</label>
+                <select id="projectTeam" name="projectTeam">
+                    <option value="">-- Select Team --</option>
+                    </select>
+                <button type="button" onclick="navigateToTeams()">Manage Teams</button>
+            </div>
+            <button type="submit">Create Project</button>
+        </form>
+    </div>
+    <script src="js/utils.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+:root {
+    --background-lightest: #f9f9f9; /* Lightest background */
+    --text-primary: #333;         /* Primary text color */
+    --text-secondary: #777;       /* Secondary text color */
+    --border-light: #ddd;         /* Light grey border */
+    --accent-color: #007bff;       /* Example accent color */
+    --font-family-sans-serif: sans-serif; /* Default sans-serif font */
+}
+
+body {
+    font-family: var(--font-family-sans-serif);
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-lightest);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* Basic styling for elevated cards (will be refined later) */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-light);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+/* Basic styling for buttons (will be refined later) */
+button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: blue, 10%); /* Example of a hypothetical darken function */
+}
+
+/* Basic styling for grid layout (will be refined later) */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 20px;
+    padding: 20px;
+}
+

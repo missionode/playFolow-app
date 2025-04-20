@@ -1,0 +1,72 @@
+/* css/settings.css */
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    line-height: 1.6;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header nav button {
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+main section {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+input[type="file"] {
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 8px 15px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    color: #333;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #eee;
+}
+
+#backup-restore > div {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: white;
+}
+
+#backup-restore h3 {
+    margin-top: 0;
+}
+
+#csv-upload-status,
+#backup-upload-status {
+    margin-top: 10px;
+    font-size: 0.9em;
+}

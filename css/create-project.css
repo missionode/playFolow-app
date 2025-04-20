@@ -1,0 +1,62 @@
+.container {
+    padding: 20px;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2em;
+    margin-top: 0;
+}
+
+#createProjectForm {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-light);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    width: calc(100% - 12px); /* Adjust for padding */
+    padding: 8px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.form-group select {
+    width: auto; /* Adjust width for select */
+    margin-left: 10px;
+}
+
+.form-group button[type="button"] {
+    margin-top: 10px;
+    /* Inherits basic button styles from global.css */
+}
+
+button[type="submit"] {
+    /* Inherits basic button styles from global.css */
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    margin-top: 20px;
+}

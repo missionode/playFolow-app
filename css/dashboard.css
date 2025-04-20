@@ -1,0 +1,140 @@
+.container {
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+header button {
+    /* Inherits basic button styles from global.css */
+}
+
+.project-card {
+    /* Inherits basic card styles from global.css */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.project-card h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.project-card p {
+    color: var(--text-secondary);
+}
+
+.project-card .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.project-card .actions button {
+    /* Inherits basic button styles from global.css */
+    font-size: 0.9em;
+    padding: 8px 12px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-secondary);
+    font-size: 1.1em;
+}
+
+/* css/dashboard.css */
+
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4; /* A light background for contrast */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header button {
+    padding: 8px 15px;
+    background-color: #007bff; /* A primary color for the button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+header button:hover {
+    background-color: #0056b3;
+}
+
+#project-list {
+    display: grid; /* Use a grid layout for the project cards */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Spacing between cards */
+}
+
+.project-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle elevation */
+    padding: 15px;
+    margin-bottom: 15px; /* Fallback for non-grid browsers */
+    transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.project-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More pronounced elevation on hover */
+}
+
+.project-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.project-card p {
+    margin-bottom: 8px;
+    color: #666;
+}
+
+.project-card .actions {
+    margin-top: 10px;
+}
+
+.project-card .actions button {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-right: 5px;
+}
+
+.project-card .actions button:hover {
+    background-color: #eee;
+}
+
+/* You can add more specific styling for progress bars, team members, etc., here */

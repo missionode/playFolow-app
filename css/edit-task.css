@@ -1,0 +1,108 @@
+.delete-button {
+    background-color: #f44336; /* Red color */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px; /* Add some spacing */
+}
+
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+/* css/edit-task.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    line-height: 1.6;
+}
+
+.edit-task-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Elevated effect */
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+textarea {
+    height: 100px; /* Adjust as needed */
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+.button-container button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.button-container button[type="submit"] {
+    background-color: #007bff; /* Primary color */
+}
+
+.button-container button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.button-container button[onclick="navigateToProjectFeed()"] { /* Style the "Cancel" button */
+    background-color: #6c757d; /* Gray color */
+}
+
+.button-container button[onclick="navigateToProjectFeed()"]:hover {
+    background-color: #5a6268;
+}
+
+.button-container .delete-button {
+    background-color: #dc3545; /* Red for delete */
+}
+
+.button-container .delete-button:hover {
+    background-color: #c82333;
+}

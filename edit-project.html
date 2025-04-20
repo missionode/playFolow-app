@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Project - PlayFlow</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/create-project.css"> <link rel="stylesheet" href="css/edit-project.css"> <script src="js/edit-project.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Edit Project</h1>
+        </header>
+        <form id="editProjectForm">
+            <input type="hidden" id="projectId" name="projectId">
+            <div class="form-group">
+                <label for="projectName">Project Name:</label>
+                <input type="text" id="projectName" name="projectName" required>
+            </div>
+            <div class="form-group">
+                <label for="timelineValue">Timeline:</label>
+                <input type="number" id="timelineValue" name="timelineValue" min="1" required>
+                <select id="timelineUnit" name="timelineUnit">
+                    <option value="days">Days</option>
+                    <option value="weeks">Weeks</option>
+                    <option value="months">Months</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="projectTeam">Team:</label>
+                <select id="projectTeam" name="projectTeam">
+                    <option value="">-- Select Team --</option>
+                </select>
+                <button type="button" onclick="navigateToTeams()">Manage Teams</button>
+            </div>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+    <script src="js/utils.js"></script>
+</body>
+</html>

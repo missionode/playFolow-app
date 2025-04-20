@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Teams - PlayFlow</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/teams.css">
+    <script src="js/teams.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Manage Teams</h1>
+            <button onclick="showCreateTeamModal()">Create New Team</button>
+        </header>
+
+        <div id="teamList" class="grid-container">
+            </div>
+
+        <div id="noTeams" class="empty-state" style="display:none;">
+            <p>No teams created yet.</p>
+        </div>
+
+        <div id="createTeamModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close-button" onclick="hideCreateTeamModal()">&times;</span>
+                <h2>Create New Team</h2>
+                <form id="newTeamForm">
+                    <div class="form-group">
+                        <label for="teamName">Team Name:</label>
+                        <input type="text" id="teamName" name="teamName" required>
+                    </div>
+                    <button type="submit">Create Team</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="manageMembersSection" style="display:none;">
+            <h2>Manage Team Members</h2>
+            <h3 id="currentTeamName"></h3>
+            <ul id="memberList">
+                </ul>
+            <div class="form-group">
+                <label for="newMemberName">Add Member:</label>
+                <input type="text" id="newMemberName" placeholder="Member Name">
+                <button type="button" onclick="addMemberToTeam()">Add</button>
+            </div>
+            <button type="button" onclick="hideManageMembersSection()">Back to Teams</button>
+            <input type="hidden" id="selectedTeamId">
+        </div>
+    </div>
+    <script src="js/utils.js"></script>
+</body>
+</html>
