@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Reports</title>
+    <title>Reports</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/report.css">
 </head>
 <body>
     <header>
-        <h1>Project Reports</h1>
+        <h1>Reports</h1>
         <nav>
             <button onclick="window.location.href='dashboard.html'">Dashboard</button>
         </nav>
@@ -17,55 +17,22 @@
     <main>
         <section id="project-summary">
             <h2>Project Summary</h2>
-            <p>Total Projects: <span id="total-projects">0</span></p>
-            <p>Completed Projects: <span id="completed-projects">0</span></p>
+            <div id="project-completion-report"></div>
+            <div id="project-timeline-report"></div>
         </section>
 
         <section id="task-summary">
-            <h2>Task Summary (All Projects)</h2>
-            <p>Total Tasks: <span id="total-tasks">0</span></p>
-            <p>Completed Tasks: <span id="completed-tasks-all">0</span></p>
-            <p>High Priority Tasks: <span id="high-priority-tasks">0</span></p>
-            <p>Average Task Difficulty: <span id="average-difficulty">0</span></p>
+            <h2>Task Summary</h2>
+            <div id="task-completion-report"></div>
+            <div id="task-priority-report"></div>
         </section>
 
-        <section id="project-specific-summary">
-            <h2>Project-Specific Task Breakdown</h2>
-            <label for="project-select">Select Project:</label>
-            <select id="project-select">
-                <option value="">-- Select a Project --</option>
-            </select>
-            <div id="project-task-details" style="margin-top: 15px;">
-                <p>Total Tasks: <span id="project-total-tasks">0</span></p>
-                <p>Completed Tasks: <span id="project-completed-tasks">0</span></p>
-                <p>High Priority Tasks: <span id="project-high-priority-tasks">0</span></p>
-                <p>Average Task Difficulty: <span id="project-average-difficulty">0</span></p>
-            </div>
-        </section>
-        <section id="social-performance">
-            <h2>Social Performance (All Projects)</h2>
-            <p>Total Likes Given: <span id="total-likes">0</span></p>
-            <p>Total Applause Given: <span id="total-applause">0</span></p>
-        </section>
-
-        <section id="project-specific-summary">
-            <h2>Project-Specific Task Breakdown</h2>
-            <label for="project-select">Select Project:</label>
-            <select id="project-select">
-                <option value="">-- Select a Project --</option>
-            </select>
-            <div id="project-task-details" style="margin-top: 15px;">
-                <p>Total Tasks: <span id="project-total-tasks">0</span></p>
-                <p>Completed Tasks: <span id="project-completed-tasks">0</span></p>
-                <p>High Priority Tasks: <span id="project-high-priority-tasks">0</span></p>
-                <p>Average Task Difficulty: <span id="project-average-difficulty">0</span></p>
-                <h3>Social Performance (Selected Project)</h3>
-                <p>Total Likes: <span id="project-total-likes">0</span></p>
-                <p>Total Applause: <span id="project-total-applause">0</span></p>
-            </div>
+        <section id="team-engagement-report">
+            <h2>Team Engagement (Likes & Applause)</h2>
+            <div id="team-likes-applause-report">
+                </div>
         </section>
     </main>
     <script src="js/report.js"></script>
 </body>
-</html>
 </html>

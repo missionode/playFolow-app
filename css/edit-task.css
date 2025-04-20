@@ -51,7 +51,7 @@ label {
 input[type="text"],
 textarea,
 select {
-    width: 100%;
+    width: 96%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -105,4 +105,21 @@ input[type="checkbox"] {
 
 .button-container .delete-button:hover {
     background-color: #c82333;
+}
+
+.diff {
+    margin-bottom: 20px;
+}
+
+.diff input[type="number"] {
+    padding: 10px;
+}
+
+#taskAssignedTo {
+    min-height: 169px;
+}
+
+#taskAssignedTo option {
+    padding: 5px 10px;
+    border-radius: 3px;
 }

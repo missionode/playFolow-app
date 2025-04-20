@@ -60,3 +60,12 @@ button[type="submit"] {
     font-size: 1.1em;
     margin-top: 20px;
 }
+
+#timelineUnit {
+    margin-left: 0px;
+    margin-top: 20px;;
+}
+
+#projectTeam {
+    margin-left: 0;
+}

@@ -1,0 +1,99 @@
+/* css/edit-project.css */
+
+body {
+    /* Inherits font, background, text color from global.css */
+}
+
+.container {
+    max-width: 600px; /* Limit the width of the main container */
+    margin: 20px auto; /* Center the container with some top/bottom margin */
+    padding: 20px;
+    background-color: white; /* Card background */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Elevated effect */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #555; /* Grey heading */
+}
+
+header h1 {
+    margin-bottom: 0.5em;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #495057; /* Grey label */
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    width: calc(100% - 12px); /* Adjust width for padding and border */
+    padding: 8px;
+    border: 1px solid #ced4da; /* Light grey border */
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.form-group select {
+    appearance: none; /* Remove default arrow */
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%23343a40" viewBox="0 0 4 5"><path d="M2 0L0 2h4L2 0z"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: 97%;
+    background-position-y: 50%;
+    background-size: 0.65em auto;
+    padding-right: 2.5em;
+}
+
+.form-group button[type="button"] {
+    padding: 8px 12px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    background-color: white;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.form-group button[type="button"]:hover {
+    background-color: #e9ecef; /* Light grey hover */
+}
+
+button[type="submit"] {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Primary blue */
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue hover */
+}
+
+#timelineUnit {
+    margin-top: 20px;
+    width: 150px;
+    margin-left: 0;
+    display: block;
+}
+
+#projectTeam {
+    margin-left: 0;
+}

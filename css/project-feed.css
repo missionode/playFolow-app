@@ -29,7 +29,7 @@ header {
 #progressBarContainer {
     background-color: var(--border-light);
     border-radius: 5px;
-    height: 20px;
+    height: 25px;
     width: 100%;
     overflow: hidden;
     margin-bottom: 5px;
@@ -53,7 +53,7 @@ header {
     color: #555;
     position: absolute;
     right: 20px;
-    top: 0px;
+    top: 1px;
 }
 
 .task-input-area {
@@ -141,8 +141,14 @@ header {
 }
 
 .task-card .assigned-to {
+    font-style: italic;
+    color: #ffffff;
     font-size: 0.9em;
-    color: var(--text-secondary);
+    padding: 10px 15px;
+    border: 1px solid #c9c9c9;
+    border-radius: 100px;
+    background: #2a7bff;
+    font-weight: 600;
 }
 
 .task-card .difficulty {
@@ -323,7 +329,7 @@ header nav button:hover {
 
 #progressBar {
     background-color: #007bff;
-    height: 10px;
+    height: 25px;
     border-radius: 5px;
     width: 0%; /* Updated by JS */
 }
@@ -393,8 +399,13 @@ header nav button:hover {
 
 .task-card .assigned-to {
     font-style: italic;
-    color: #777;
+    color: #ffffff;
     font-size: 0.9em;
+    padding: 10px 15px;
+    border: 1px solid #c9c9c9;
+    border-radius: 100px;
+    background: #2a7bff;
+    font-weight: 600;
 }
 
 .task-card .difficulty {
@@ -460,4 +471,23 @@ header nav button:hover {
 .task-card .social button span {
     font-weight: bold;
     color: #007bff;
+}
+
+.task-card.task-completed {
+    border-left: 5px solid #28a745; /* Green border */
+    opacity: 0.8; /* Slightly fade out completed tasks */
+}
+
+.task-card.task-completed h3 {
+    text-decoration: line-through; /* Optional: Strike through the completed task name */
+    color: #777; /* Optional: Gray out the completed task name */
+}
+
+select#taskAssignedTo {
+    min-height: 200px;;
+}
+
+select#taskAssignedTo option {
+    padding: 5px 10px;
+    border-radius: 3px;
 }

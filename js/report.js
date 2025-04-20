@@ -1,78 +1,127 @@
 // js/report.js
+
 document.addEventListener('DOMContentLoaded', () => {
-    loadReportData();
+    generateProjectCompletionReport();
+    generateTaskCompletionReport();
+    generateTaskPriorityReport();
+    generateTeamLikesApplauseReport();
 });
 
-function loadReportData() {
-    const projects = localStorage.getItem('projects');
-    const tasks = localStorage.getItem('tasks');
-    let projectsArray = projects ? JSON.parse(projects) : [];
-    let tasksArray = tasks ? JSON.parse(tasks) : [];
+function generateProjectCompletionReport() {
+    const reportContainer = document.getElementById('project-completion-report');
+    const projects = JSON.parse(localStorage.getItem('projects') || '[]');
+    const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+    let completedProjects = 0;
 
-    // Project Summary
-    document.getElementById('total-projects').textContent = projectsArray.length;
-    const completedProjects = projectsArray.filter(project => {
-        return tasksArray.filter(task => task.projectId === project.id).every(task => task.completed);
-    }).length;
-    document.getElementById('completed-projects').textContent = completedProjects;
-
-    // Task Summary (All Projects)
-    document.getElementById('total-tasks').textContent = tasksArray.length;
-    document.getElementById('completed-tasks-all').textContent = tasksArray.filter(task => task.completed).length;
-    document.getElementById('high-priority-tasks').textContent = tasksArray.filter(task => task.priority).length;
-    const totalDifficulty = tasksArray.reduce((sum, task) => sum + parseInt(task.difficulty || 0), 0);
-    const averageDifficulty = tasksArray.length > 0 ? (totalDifficulty / tasksArray.length).toFixed(1) : 0;
-    document.getElementById('average-difficulty').textContent = averageDifficulty;
-
-    // Social Performance (All Projects - Updated for Users)
-    const allLikes = tasksArray.reduce((acc, task) => acc.concat(task.likedBy || []), []);
-    const uniqueLikersCount = [...new Set(allLikes)].length;
-    const allApplause = tasksArray.reduce((acc, task) => acc.concat(task.applaudedBy || []), []);
-    const uniqueApplaudersCount = [...new Set(allApplause)].length;
-    document.getElementById('total-likes').textContent = uniqueLikersCount;
-    document.getElementById('total-applause').textContent = uniqueApplaudersCount;
-
-    // Populate Project Select Dropdown
-    const projectSelect = document.getElementById('project-select');
-    projectsArray.forEach(project => {
-        const option = document.createElement('option');
-        option.value = project.id;
-        option.textContent = project.name;
-        projectSelect.appendChild(option);
-    });
-
-    // Event listener for project selection
-    projectSelect.addEventListener('change', (event) => {
-        const selectedProjectId = event.target.value;
-        if (selectedProjectId) {
-            displayProjectTaskDetails(selectedProjectId, tasksArray);
-        } else {
-            // Reset project-specific details
-            document.getElementById('project-total-tasks').textContent = '0';
-            document.getElementById('project-completed-tasks').textContent = '0';
-            document.getElementById('project-high-priority-tasks').textContent = '0';
-            document.getElementById('project-average-difficulty').textContent = '0';
-            document.getElementById('project-total-likes').textContent = '0';
-            document.getElementById('project-total-applause').textContent = '0';
+    projects.forEach(project => {
+        const projectTasks = tasks.filter(task => task.projectId === project.id);
+        if (projectTasks.length > 0 && projectTasks.every(task => task.completed)) {
+            completedProjects++;
         }
     });
+
+    reportContainer.textContent = `Completed Projects: ${completedProjects} / ${projects.length}`;
 }
 
-function displayProjectTaskDetails(projectId, allTasks) {
-    const projectTasks = allTasks.filter(task => task.projectId === projectId);
+function generateTaskCompletionReport() {
+    const reportContainer = document.getElementById('task-completion-report');
+    const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+    const completedTasks = tasks.filter(task => task.completed).length;
+    reportContainer.textContent = `Completed Tasks: ${completedTasks} / ${tasks.length}`;
+}
 
-    document.getElementById('project-total-tasks').textContent = projectTasks.length;
-    document.getElementById('project-completed-tasks').textContent = projectTasks.filter(task => task.completed).length;
-    document.getElementById('project-high-priority-tasks').textContent = projectTasks.filter(task => task.priority).length;
-    const totalDifficulty = projectTasks.reduce((sum, task) => sum + parseInt(task.difficulty || 0), 0);
-    const averageDifficulty = projectTasks.length > 0 ? (totalDifficulty / projectTasks.length).toFixed(1) : 0;
-    document.getElementById('project-average-difficulty').textContent = averageDifficulty;
+function generateTaskPriorityReport() {
+    const reportContainer = document.getElementById('task-priority-report');
+    const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+    const highPriorityTasks = tasks.filter(task => task.priority).length;
+    reportContainer.textContent = `High Priority Tasks: ${highPriorityTasks} / ${tasks.length}`;
+}
 
-    // Social Performance (Selected Project - Updated for Users)
-    const projectLikes = projectTasks.reduce((acc, task) => acc.concat(task.likedBy || []), []);
-    const projectUniqueLikersCount = [...new Set(projectLikes)].length;
-    const projectApplause = projectTasks.reduce((acc, task) => acc.concat(task.applaudedBy || []), []);
-    const projectUniqueApplaudersCount = [...new Set(projectApplause)].length;
-    document.getElementById('project-total-likes').textContent = projectUniqueLikersCount;
-    document.getElementById('project-total-applause').textContent = projectUniqueApplaudersCount;
+
+function generateTeamLikesApplauseReport() {
+    const reportContainer = document.getElementById('team-likes-applause-report');
+    reportContainer.innerHTML = '';
+
+    const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+    const projects = JSON.parse(localStorage.getItem('projects') || '[]');
+    const teams = JSON.parse(localStorage.getItem('teams') || '[]');
+    const users = JSON.parse(localStorage.getItem('users') || '[]'); // Fetch user data
+
+    if (teams.length === 0) {
+        reportContainer.textContent = 'No teams available to generate the report.';
+        return;
+    }
+
+    if (projects.length === 0) {
+        reportContainer.textContent = 'No projects available to generate the report.';
+        return;
+    }
+
+    if (tasks.length === 0) {
+        reportContainer.textContent = 'No tasks available to generate the report.';
+        return;
+    }
+
+    const teamEngagement = {};
+
+    teams.forEach(team => {
+        teamEngagement[team.name] = {
+            likesByUser: {},
+            applauseByUser: {}
+        };
+
+        const teamProjects = projects.filter(project => project.teamId === team.id);
+
+        teamProjects.forEach(project => {
+            const projectTasks = tasks.filter(task => task.projectId === project.id);
+            projectTasks.forEach(task => {
+                // Attribute likes to assignees if there are any likes
+                if ((task.likedBy || []).length > 0) {
+                    (task.assignedTo || []).forEach(assigneeId => {
+                        const user = users.find(u => u.id === assigneeId);
+                        const userName = user ? user.name : assigneeId; // Use ID if name not found
+                        teamEngagement[team.name].likesByUser[userName] = (teamEngagement[team.name].likesByUser[userName] || 0) + (task.likes || 0);
+                    });
+                }
+
+                // Attribute applauses to assignees if there are any applauses
+                if ((task.applaudedBy || []).length > 0) {
+                    (task.assignedTo || []).forEach(assigneeId => {
+                        const user = users.find(u => u.id === assigneeId);
+                        const userName = user ? user.name : assigneeId; // Use ID if name not found
+                        teamEngagement[team.name].applauseByUser[userName] = (teamEngagement[team.name].applauseByUser[userName] || 0) + (task.applause || 0);
+                    });
+                }
+            });
+        });
+    });
+
+    if (Object.keys(teamEngagement).length > 0) {
+        const reportHTML = Object.entries(teamEngagement)
+            .map(([teamName, engagement]) => {
+                const likesList = Object.entries(engagement.likesByUser)
+                    .sort(([, countA], [, countB]) => countB - countA)
+                    .map(([userName, count]) => `<li>${userName}: <span>${count}</span></li>`)
+                    .join('');
+
+                const applauseList = Object.entries(engagement.applauseByUser)
+                    .sort(([, countA], [, countB]) => countB - countA)
+                    .map(([userName, count]) => `<li>${userName}: <span>${count}</span></li>`)
+                    .join('');
+
+                return `
+                    <div class="team-engagement">
+                        <h3>${teamName}</h3>
+                        <h4>Likes (Received by Assignees)</h4>
+                        ${likesList ? `<ul>${likesList}</ul>` : '<p>No likes received by assignees yet.</p>'}
+                        <h4>Applauses (Received by Assignees)</h4>
+                        ${applauseList ? `<ul>${applauseList}</ul>` : '<p>No applauses received by assignees yet.</p>'}
+                    </div>
+                `;
+            })
+            .join('');
+        reportContainer.innerHTML = reportHTML;
+    } else {
+        reportContainer.textContent = 'No team engagement data found.';
+    }
 }

@@ -83,6 +83,11 @@ function getCurrentUserId() {
 function createTaskCard(task) {
     const card = document.createElement('div');
     card.classList.add('task-card');
+
+    if (task.completed) {
+        card.classList.add('task-completed'); // Add this class for completed tasks
+    }
+    
     if (task.priority) {
         card.classList.add('priority-high');
     }
