@@ -2,10 +2,27 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadProjectDetails();
     loadTasks();
-    loadTeamMembers(); // Populate the "Assigned To" dropdown
+    loadTeamMembersForFilter(); // Populate the "Assigned To" filter dropdown
+    loadTeamMembersForAddTask(); // --- RE-ADDED --- Populate the "Assigned To" in Add Task
 
     const addTaskForm = document.getElementById('addTaskForm');
     addTaskForm.addEventListener('submit', handleAddTask);
+
+    // Event listeners for search and filters
+    const searchInput = document.getElementById('searchTasks');
+    searchInput.addEventListener('input', filterTasks);
+
+    const priorityFilter = document.getElementById('filterPriority');
+    priorityFilter.addEventListener('change', filterTasks);
+
+    const completedFilter = document.getElementById('filterCompleted');
+    completedFilter.addEventListener('change', filterTasks);
+
+    const assignedToFilter = document.getElementById('filterAssignedTo');
+    assignedToFilter.addEventListener('change', filterTasks);
+
+    const difficultyFilter = document.getElementById('filterDifficulty');
+    difficultyFilter.addEventListener('change', filterTasks);
 });
 
 function getProjectIdFromUrl() {
@@ -70,7 +87,7 @@ function loadTasks() {
 }
 
 function navigateToEditTask(taskId) {
-    const projectId = getProjectIdFromUrl(); // Get the current project ID from the Project Feed URL
+    const projectId = getProjectIdFromUrl(); // Make sure you're getting the projectId
     window.location.href = `edit-task.html?id=${taskId}&projectId=${projectId}`;
 }
 
@@ -85,12 +102,20 @@ function createTaskCard(task) {
     card.classList.add('task-card');
 
     if (task.completed) {
-        card.classList.add('task-completed'); // Add this class for completed tasks
+        card.classList.add('task-completed');
     }
-    
+
     if (task.priority) {
         card.classList.add('priority-high');
     }
+
+    // Add data attributes for filtering
+    card.dataset.priority = task.priority;
+    card.dataset.completed = task.completed;
+    card.dataset.assignedTo = task.assignedTo ? task.assignedTo.join(', ').toLowerCase() : '';
+    card.dataset.difficulty = task.difficulty;
+    card.dataset.name = task.name.toLowerCase();
+    card.dataset.description = (task.description || '').toLowerCase();
 
     const completionCheckbox = document.createElement('input');
     completionCheckbox.type = 'checkbox';
@@ -210,7 +235,36 @@ function generateId() {
     return Math.random().toString(36).substring(2, 15);
 }
 
-function loadTeamMembers() {
+// Function to load team members for the filter dropdown
+function loadTeamMembersForFilter() {
+    const projectId = getProjectIdFromUrl();
+    const assignedToFilter = document.getElementById('filterAssignedTo');
+    assignedToFilter.innerHTML = '<option value="">All</option>'; // Reset options
+
+    const projects = localStorage.getItem('projects');
+    if (projects) {
+        const projectsArray = JSON.parse(projects);
+        const currentProject = projectsArray.find(project => project.id === projectId);
+        if (currentProject && currentProject.teamId) {
+            const teams = localStorage.getItem('teams');
+            if (teams) {
+                const teamsArray = JSON.parse(teams);
+                const currentTeam = teamsArray.find(team => team.id === currentProject.teamId);
+                if (currentTeam && currentTeam.members) {
+                    currentTeam.members.forEach(member => {
+                        const option = document.createElement('option');
+                        option.value = member.toLowerCase(); // Use lowercase for easier filtering
+                        option.textContent = member;
+                        assignedToFilter.appendChild(option);
+                    });
+                }
+            }
+        }
+    }
+}
+
+// Function to load team members for the Add Task dropdown
+function loadTeamMembersForAddTask() {
     const projectId = getProjectIdFromUrl();
     const assignedToSelect = document.getElementById('taskAssignedTo');
     assignedToSelect.innerHTML = '<option value="">-- Select Team Members --</option>';
@@ -388,4 +442,32 @@ function handleDeleteTask(taskId) {
             loadTasks(); // Reload tasks to update the display on the current project feed
         }
     }
+}
+
+// Function to filter tasks based on search and filter criteria
+function filterTasks() {
+    const searchTerm = document.getElementById('searchTasks').value.toLowerCase();
+    const priorityFilterValue = document.getElementById('filterPriority').value;
+    const completedFilterValue = document.getElementById('filterCompleted').value;
+    const assignedToFilterValue = document.getElementById('filterAssignedTo').value;
+    const difficultyFilterValue = document.getElementById('filterDifficulty').value;
+
+    const taskCards = document.querySelectorAll('#taskList .task-card');
+
+    taskCards.forEach(card => {
+        const nameMatch = card.dataset.name.includes(searchTerm);
+        const descriptionMatch = card.dataset.description.includes(searchTerm);
+        const searchMatch = nameMatch || descriptionMatch;
+
+        const priorityMatch = priorityFilterValue === '' || card.dataset.priority === priorityFilterValue;
+        const completedMatch = completedFilterValue === '' || card.dataset.completed === completedFilterValue;
+        const assignedToMatch = assignedToFilterValue === '' || card.dataset.assignedTo.includes(assignedToFilterValue);
+        const difficultyMatch = difficultyFilterValue === '' || card.dataset.difficulty === difficultyFilterValue;
+
+        if (searchMatch && priorityMatch && completedMatch && assignedToMatch && difficultyMatch) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
 }

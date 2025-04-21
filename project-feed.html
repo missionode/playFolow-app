@@ -6,60 +6,111 @@
     <title>Project Feed - PlayFlow</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/project-feed.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="js/project-feed.js" defer></script>
-
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="project-info">
-                <h1 id="projectName" style="text-align: center;"></h1>
-                <div class="progress-info">
-                    <div id="progressBarContainer">
-                        <div id="progressBar"></div>
-                        <span id="progressPercentage">0%</span>
-                    </div>
-                    <p id="daysLeft"></p>
-                </div>
-            </div>
-        </header>
+    <header>
+        <h1>Project Feed - <span id="projectName"></span></h1>
+        <button onclick="navigateToDashboard()">Back to Dashboard</button>
+    </header>
 
-        <div class="task-input-area">
-            <h2>Add New Task</h2>
-            <form id="addTaskForm">
-                <div class="form-group">
-                    <label for="taskName">Task Name:</label>
-                    <input type="text" id="taskName" name="taskName" required>
-                </div>
-                <div class="form-group">
-                    <label for="taskDescription">Description:</label>
-                    <textarea id="taskDescription" name="taskDescription"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="taskPriority">Priority:</label>
-                    <input type="checkbox" id="taskPriority" name="taskPriority"> High
-                </div>
-                <div class="form-group">
-                    <label for="taskAssignedTo">Assigned To:</label>
-                    <select id="taskAssignedTo" name="taskAssignedTo" multiple>
-                        <option value="">-- Select Team Members --</option>
+
+    
+
+    <div id="progressBarContainer">
+        <div id="progressBar"></div>
+        <span id="progressPercentage">0%</span>
+        <div id="completionMessageContainer" style="display: none;"></div>
+    </div>
+    <p id="daysLeft"></p>
+
+
+
+    <div class="add-task-section">
+        <h2>Add New Task</h2>
+        <form id="addTaskForm">
+            <div class="form-group">
+                <label for="taskName">Task Name:</label>
+                <input type="text" id="taskName" required>
+            </div>
+            <div class="form-group">
+                <label for="taskDescription">Description:</label>
+                <textarea id="taskDescription"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="taskPriority">Priority:</label>
+                <input type="checkbox" id="taskPriority"> High
+            </div>
+            <div class="form-group">
+                <label for="taskAssignedTo">Assigned To:</label>
+                <select id="taskAssignedTo" multiple>
+                    <option value="">-- Select Team Members --</option>
                     </select>
-                </div>
-                <div class="form-group">
-                    <label for="taskDifficulty">Difficulty (1-10):</label>
-                    <input type="number" id="taskDifficulty" name="taskDifficulty" min="1" max="10" value="5" required>
-                </div>
-                <button type="submit">Add Task</button>
-            </form>
+            </div>
+            <div class="form-group">
+                <label for="taskDifficulty">Difficulty (1-5):</label>
+                <select id="taskDifficulty">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+
+    <div style="margin-top: 20px;"  class="controls-container">
+        <div class="search-box">
+            <label for="searchTasks">Search Tasks:</label>
+            <input type="text" id="searchTasks" placeholder="Enter task name or description">
         </div>
 
-        <div class="task-list-container">
-            <h2>Tasks</h2>
-            <div id="taskList">
+        <div class="filters">
+            <div class="filter-group">
+                <label for="filterPriority">Priority:</label>
+                <select id="filterPriority">
+                    <option value="">All</option>
+                    <option value="true">High</option>
+                    <option value="false">Normal</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="filterCompleted">Status:</label>
+                <select id="filterCompleted">
+                    <option value="">All</option>
+                    <option value="false">Active</option>
+                    <option value="true">Completed</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="filterAssignedTo">Assigned To:</label>
+                <select id="filterAssignedTo">
+                    <option value="">All</option>
+                    </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="filterDifficulty">Difficulty:</label>
+                <select id="filterDifficulty">
+                    <option value="">All</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
             </div>
         </div>
     </div>
-    <script src="js/utils.js"></script>
+
+    <div style="margin-top: 20px;" id="taskList">
+    
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
